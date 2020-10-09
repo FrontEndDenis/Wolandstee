@@ -1,0 +1,42 @@
+.top-line
+	.top-line__left
+		.top-line__logo
+			img(src='../../../static/images/general/logo.svg', alt='Велунд сталь')
+		nav.top-line__nav
+			ul.top-line__navitagion-panel.txt--smbld14
+				li
+					a(href='#') Производство
+				li
+					a(href='#') Услуги
+				li
+					a(href='#') Доставка
+				li
+					a(href='#')
+						| Компания
+						+icon('arrow-down')
+				li
+					a(href='#') Контакты
+				li.language
+					a(href='#') ru
+	.top-line__right
+		.top-line__contacts
+			.top-line__info
+				.top-line__col
+					a.txt--smbld16(href='mailto:habarovsk@gkws.ru') habarovsk@gkws.ru
+					.top-line__city.txt--smbld14
+						span Нижний Новгород
+						+icon('arrow-down')
+				.top-line__col
+					a.txt--smbld16(href='tel:+73439999999') 8 (343) 999 99 99
+					a.txt--smbld14(href='tel:+78009999999') 8 (800) 999 99 99
+			.top-line__callback.btn.btn--circle.btn--white5
+				+icon('phone')
+		.top-line__mobile
+			.top-line__m-search
+				+icon('search')
+			.top-line__m-basket
+				+icon('basket')
+			.top-line__m-menu
+				.hamburger
+					span
+				

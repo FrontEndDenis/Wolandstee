@@ -1,0 +1,156 @@
+.header {
+	padding: 20px 0px;
+	background: $ui-main-blue;
+	color: $white;
+	&__top-line {
+		margin-bottom: 16px;
+	}
+}
+
+.top-line {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__left {
+		display: flex;
+		align-items: center;
+	}
+	&__logo {
+		max-width: 193px;
+		margin-right: 24px;
+	}
+	&__navitagion-panel {
+		margin: 0px;
+		& > li {
+			line-height: 150%;
+			& > a {
+				display: flex;
+				align-items: center;
+				color: $txt-white60;
+				cursor: pointer
+			}
+			&:not(:last-child) {
+				margin-right: 16px;
+			}
+			&.language {
+				a {
+					color: $accent-main;
+				}
+			}
+		}
+		svg {margin-left: 3px}
+	}
+	&__right {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	&__contacts {
+		display: flex;
+		align-items: center;
+	}
+	&__info {
+		display: flex;
+		align-items: center;
+		margin-right: 42px;
+	}
+	&__col {
+		display: flex;
+		flex-direction: column;
+		&:not(:last-child) {
+			margin-right: 28px;
+		}
+		.txt--smbld14 {
+			margin-top: 2px;
+			color: $txt-white60;
+		}
+	}
+	&__mobile {
+		display: none;
+	}
+	&__m-search, &__m-basket, &__m-menu {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+	}
+	&__m-basket {margin: 0px 12px}
+}
+
+.bottom-line {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__navitagion-panel {
+		margin: 0px;
+		& > li {
+			white-space: nowrap;
+			&:not(:last-child) {margin-right: 22px}
+			&.spacial {
+				a {
+					display: flex;
+					align-items: center;
+					padding: 5px 12px;
+					background: $ui-white5;
+					border-radius: 50px;
+				}
+				svg {margin-right: 7px;}
+			}
+		}
+	}
+	&__right {
+		display: flex;
+		align-items: center;
+	}
+	&__search {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 40px;
+		height: 40px;
+		margin-right: 26px;
+		cursor: pointer;
+	}
+}
+
+@media only screen and (max-width: 1199px) {
+	.header {
+		padding: 20px 0px 25px;
+		&__top-line {margin-bottom: 20px}
+	}
+	.top-line {
+		&__left {margin-right: 64px;}
+		&__logo {
+			max-width: 188px;
+			margin: 0px;
+		}
+		&__nav {display: none}
+		&__right {
+			flex: 1;
+		}
+		&__info {margin-right: 24px}
+		&__col {
+			&:not(:last-child) {margin-right: 24px}
+		}
+		&__mobile {
+			display: flex;
+		}
+	}
+	.bottom-line {
+		&__right {display: none}
+	}
+}
+
+@media only screen and (max-width: 1023px) {
+	.bottom-line {
+		&__left {width: 100%}
+		&__nav {overflow: hidden}
+		&__navitagion-panel {
+			width: 100%;
+			overflow-x: auto;
+		}
+	}
+}
