@@ -10,20 +10,36 @@
 					a(href='#') Услуги
 				li
 					a(href='#') Доставка
-				li
+				li.catalog-list
 					a(href='#')
 						| Компания
 						+icon('arrow-down')
+					.catalog-list__wrap
+						ul.catalog-list__list
+							li
+								a(href='#')
+									| О нас
+									+icon('arrow-right')
+							li
+								a(href='#')
+									| Блог
+									+icon('arrow-right')
+							li
+								a(href='#')
+									| Новости
+									+icon('arrow-right')
+							li
+								a(href='#')
+									| Вакансии
+									+icon('arrow-right')
 				li
 					a(href='#') Контакты
-				li.language
-					a(href='#') ru
 	.top-line__right
 		.top-line__contacts
 			.top-line__info
 				.top-line__col
 					a.txt--smbld16(href='mailto:habarovsk@gkws.ru') habarovsk@gkws.ru
-					.top-line__city.txt--smbld14
+					.top-line__city.txt--smbld14(data-toggle='modal' data-target='#modal-city')
 						span Нижний Новгород
 						+icon('arrow-down')
 				.top-line__col
@@ -32,11 +48,11 @@
 			.top-line__callback.btn.btn--circle.btn--white5
 				+icon('phone')
 		.top-line__mobile
-			.top-line__m-search
+			button.top-line__m-search
 				+icon('search')
-			.top-line__m-basket
+			button.top-line__m-basket
 				+icon('basket')
-			.top-line__m-menu
+			button.top-line__m-menu
 				.hamburger
 					span
 				

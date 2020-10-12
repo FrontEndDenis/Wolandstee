@@ -21,7 +21,15 @@
 				li
 					a(href='#') Полимеры
 	.bottom-line__right
-		.bottom-line__search
+		.bottom-line__search-input.search-input
+			button.search-input__search
+				+icon('search')
+			input(type='search', placeholder='Найти товар')
+			button.search-input__close
+				+icon('close')
+		button#open-search-header.bottom-line__search.btn.btn--circle.btn--trparent
 			+icon('search')
 		.bottom-line__basket
 			a.btn.btn--h40(href='#') Корзина
+	.bottom-line__catalog
+		include ./catalog-menu

@@ -28,3 +28,26 @@
 	height: 22px;
 	fill: $accent-main;
 }
+
+.icon-close {
+	width: 12px;
+	height: 12px;
+	fill: $txt-black;
+}
+
+.icon-arrow-right {
+	width: 14px;
+	height: 14px;
+	fill: $accent-main;
+}
+
+@media only screen and (max-width: 575px) {
+	.icon-search {
+		width: 16px;
+		height: 16px;
+	}
+	.icon-basket {
+		width: 17px;
+		height: 18px;
+	}
+}

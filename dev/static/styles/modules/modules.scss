@@ -2,10 +2,14 @@
 @import "icon/icon";
 @import "buttons/buttons";
 @import "elements/elements";
+@import "animate/animate";
 // Шапка
 @import "header/header";
+// Каталог в шапке
+@import "catalog-menu/catalog-menu";
 // Подвал
 @import "footer/footer";
-
+// Модальные окна
+@import "modal/modal";
 // Ui-kit
 @import "../../../ui-kit/ui-breadcrumbs/ui-breadcrumbs.scss"

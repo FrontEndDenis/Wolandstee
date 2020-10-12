@@ -19,7 +19,7 @@ body {
 	line-height: 150%;
 	font-weight: 500;
 	letter-spacing: 0.02rem;
-	font-family: 'Montserrat-custom';
+	font-family: 'Montserrat-custom', Roboto, 'Open Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Cantarell, 'Helvetica Neue';
 	overflow-x: hidden;
 	h1, h2, h3, h4, h5, h6 {margin: 0}
 }
@@ -42,11 +42,11 @@ textarea,
 select {font: inherit}
 
 input, textarea {
-	// color: $text-dark;
-	font-family: Montserrat, Roboto, 'Open Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Cantarell, 'Helvetica Neue';
-	font-size: 20px;
+	color: $txt-black;
+	font-family: 'Montserrat-custom', Roboto, 'Open Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Cantarell, 'Helvetica Neue';
+	font-size: 15px;
 	font-weight: 500;
-	line-height: 24px;
+	line-height: 150%;
 	outline: none;
 	resize: none;
 	border-radius: 0;
@@ -54,16 +54,23 @@ input, textarea {
 	-webkit-appearance: none;
 	transition: .3s linear;
 	&::placeholder {
-		// color: $clrb0;
-		font-family: Montserrat, Roboto, 'Open Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Cantarell, 'Helvetica Neue';
-		font-size: 20px;
+		color: $txt-gray60;
+		font-family: 'Montserrat-custom', Roboto, 'Open Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Cantarell, 'Helvetica Neue';
+		font-size: 16px;
 		font-weight: 500;
-		line-height: 24px;
+		line-height: 150%;
 		transition: .3s linear;
 	}
 	&:focus, &:active {
 		outline: none !important;
 		box-shadow: none !important;
+		&::placeholder {color: $txt-gray60;}
+		&:hover {
+			&::placeholder {color: $txt-gray60;}
+		}
+	}
+	&:hover {
+		&::placeholder {color: $txt-gray;}
 	}
 	&::-ms-clear, 
 	&::-ms-reveal {
