@@ -1,5 +1,26 @@
 svg4everybody();
 
+function sliderInit() {
+	let text = ['Бесплатная доставка', 'Скидка на 1-ый заказ', 'Акции месяца', 'Новый Год', 'Текст из массива js']
+	const mainSlider = new Swiper('.main-slider', {
+		slidesPerView: 1,
+		spaceBetween: 30,
+		loop: true,
+		// autoplay: {
+		// 	delay: 3500,
+		// 	disableOnInteraction: false,
+		// },
+		pagination: {
+			el: '.s-main-slider__pagination',
+			clickable: true,
+			renderBullet: function (index, className) {
+				return '<span class="' + className + '">' + (text[index]) + '</span>';
+			}
+		}
+	})
+}
+sliderInit();
+
 function isMobile() {
 	let isMobile = {
 		Android: function () { return navigator.userAgent.match(/Android/i); },
@@ -26,6 +47,22 @@ function animation(item, anmClass) {
 	}, { once: true });
 }
 
+// Валидация
+(function () {
+	window.addEventListener('load', function () {
+		var forms = document.getElementsByClassName('needs-validation');
+		var validation = Array.prototype.filter.call(forms, function (form) {
+			form.addEventListener('submit', function (event) {
+				if (form.checkValidity() === false) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+				form.classList.add('was-validated');
+			}, false);
+		});
+	}, false);
+})();
+
 // Поиск в шапке
 function openSearchHeader() {
 	const btn = document.querySelector('#open-search-header'),
@@ -48,7 +85,6 @@ function openSearchHeader() {
 	btn.addEventListener('click', show)
 	btnClose.addEventListener('click', hide)
 }
-
 openSearchHeader();
 
 // Компания
@@ -68,6 +104,53 @@ function catalogListInfo() {
 	elem.addEventListener('mouseleave', hide, false);
 }
 catalogListInfo();
+
+// Каталог
+function catalogMenu() {
+	const bottom = document.querySelector('.bottom-line__left'),
+		panel = document.querySelector('.bottom-line__navitagion-panel'),
+		elems = panel.querySelectorAll('li'),
+		block = document.querySelector('.bottom-line__catalog');
+	
+	const checkEl = item => {
+		if(item.classList.contains('active')) {
+			addEl(item)
+		} else if(item.classList.contains('spacial')) {
+			addEl(item)
+			block.classList.remove('active');
+		} else {
+			addEl(item)
+			show();
+		}
+	}
+
+	const addEl = item => {
+		elems.forEach(el => el.classList.remove('active'))
+		panel.classList.add('open-catalog');
+		item.classList.add('active');
+	}
+
+	const hide = item => {
+		panel.classList.remove('open-catalog');
+		block.classList.remove('active');
+		item.classList.remove('active');
+	}
+
+	const show = () => {
+		block.classList.add('active');
+		animation(block, 'fade-in');
+	}
+
+	elems.forEach(elem => {
+		elem.addEventListener('mouseenter', function () {
+			checkEl(elem);
+		}, false);
+		bottom.addEventListener('mouseleave', function () {
+			hide(elem);
+		}, false);
+	})
+}
+catalogMenu();
 
 // Табы
 function tabs() {

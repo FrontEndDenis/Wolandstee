@@ -16,6 +16,7 @@
 		align-items: center;
 	}
 	&__logo {
+		flex-shrink: 0;
 		max-width: 193px;
 		margin-right: 24px;
 	}
@@ -55,12 +56,20 @@
 	&__col {
 		display: flex;
 		flex-direction: column;
+		flex-shrink: 0;
 		&:not(:last-child) {
 			margin-right: 28px;
 		}
-		.txt--smbld14 {
+		.txt--mdm16 {
+			&:hover {
+				color: $accent-main;
+			}
+		}
+		.txt--mdm14 {
 			margin-top: 2px;
 			color: $txt-white60;
+			transition: .3s linear;
+			&:hover {color: $accent-main2;}
 		}
 	}
 	&__city {
@@ -134,15 +143,31 @@
 		& > li {
 			white-space: nowrap;
 			&:not(:last-child) {margin-right: 22px}
+			a {
+				display: inline-block;
+				line-height: 40px;
+			}
 			&.spacial {
 				a {
 					display: flex;
 					align-items: center;
-					padding: 5px 12px;
+					padding: 0 12px;
 					background: $ui-white5;
 					border-radius: 50px;
+					line-height: 30px;
 				}
 				svg {margin-right: 7px;}
+				&.active {
+					a {background: $ui-white10;}
+				}
+			}
+		}
+		&.open-catalog {
+			& > li {
+				a {color: $txt-white60}
+				&.active {
+					a {color: $white;}
+				}
 			}
 		}
 	}
@@ -158,20 +183,25 @@
 		&.active {display: block;}
 	}
 	&__search {
+		flex-shrink: 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		width: 40px;
-		height: 40px;
 		margin-right: 16px;
+		padding: 8px;
 		cursor: pointer;
 	}
+	&__basket {flex-shrink: 0;}
 	&__catalog {
+		display: none;
 		position: absolute;
-		top: 48px;
+		top: 40px;
 		left: 0px;
 		right: 0px;
+		padding-top: 8px;
+		z-index: 10;
+		&.active {display: block}
 	}
 	&.open-search {
 		.bottom-line {
@@ -258,6 +288,7 @@
 			& > li {
 				line-height: 135%;
 				&:not(:last-child) {margin-right: 16px}
+				a {line-height: 135%;}
 				&.spacial {
 					a {padding: 4px 8px;}
 					svg {margin-right: 5px;}

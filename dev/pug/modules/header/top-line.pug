@@ -3,7 +3,7 @@
 		.top-line__logo
 			img(src='../../../static/images/general/logo.svg', alt='Велунд сталь')
 		nav.top-line__nav
-			ul.top-line__navitagion-panel.txt--smbld14
+			ul.top-line__navitagion-panel.txt--mdm14
 				li
 					a(href='#') Производство
 				li
@@ -38,21 +38,20 @@
 		.top-line__contacts
 			.top-line__info
 				.top-line__col
-					a.txt--smbld16(href='mailto:habarovsk@gkws.ru') habarovsk@gkws.ru
-					.top-line__city.txt--smbld14(data-toggle='modal' data-target='#modal-city')
+					a.txt--mdm16(href='mailto:petropavlovsk@gkws.kz') petropavlovsk@gkws.kz
+					.top-line__city.txt--mdm14(data-toggle='modal' data-target='#modal-city')
 						span Нижний Новгород
-						+icon('arrow-down')
 				.top-line__col
-					a.txt--smbld16(href='tel:+73439999999') 8 (343) 999 99 99
-					a.txt--smbld14(href='tel:+78009999999') 8 (800) 999 99 99
-			.top-line__callback.btn.btn--circle.btn--white5
+					a.txt--mdm16(href='tel:+73439999999') 8 (343) 999 99 99
+					a.txt--mdm14(href='tel:+78009999999') 8 (800) 999 99 99
+			button.top-line__callback.btn.btn--circle.btn--white5(type='button', data-toggle='modal' data-target='#modal-callback')
 				+icon('phone')
 		.top-line__mobile
-			button.top-line__m-search
+			button.top-line__m-search(type='button')
 				+icon('search')
-			button.top-line__m-basket
+			button.top-line__m-basket(type='button', data-toggle='modal', data-target='#modal-basket')
 				+icon('basket')
-			button.top-line__m-menu
+			button.top-line__m-menu(type='button')
 				.hamburger
 					span
 				

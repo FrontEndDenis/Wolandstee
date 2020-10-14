@@ -11,6 +11,7 @@ module.exports = function () {
         return $.gulp.src([
                 'node_modules/svg4everybody/dist/svg4everybody.min.js',
                 'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                'node_modules/swiper/swiper-bundle.min.js',
             ])
             .pipe(concat('libs.min.js'))
             .pipe($.gulp.dest(scriptsPATH.output));
@@ -20,6 +21,7 @@ module.exports = function () {
         return $.gulp.src([
                 'node_modules/svg4everybody/dist/svg4everybody.min.js',
                 'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                'node_modules/swiper/swiper-bundle.min.js',
             ])
             .pipe(concat('libs.min.js'))
             .pipe(uglify())

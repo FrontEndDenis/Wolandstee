@@ -21,7 +21,7 @@ ul:not([class]) {
 
 nav {
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 	 & > ul {
 		display: flex;
 		align-items: center;
@@ -66,6 +66,50 @@ nav {
 	}
 }
 
+.checkbox {
+	font-size: 14px;
+	user-select: none;
+	input {display: none}
+	&__text {
+		position: relative;
+		display: flex;
+		color: $txt-black90;
+		font-size: 12px;
+		line-height: 135%;
+		cursor: pointer;
+		&::before {
+			content: '';
+			display: inline-block;
+			flex-shrink: 0;
+			width: 15px;
+			height: 15px;
+			margin-right: 12px;
+			border: 1px solid $ui-dark-gray30;
+			border-radius: 2px;
+			transition: .3s linear;
+		}
+		&::after {
+			display: none;
+			content: url('../../../../static/images/general/check.svg');
+			position: absolute;
+			top: 0px;
+			left: 2px;
+		}
+	}
+	&:hover {
+		.checkbox__text {
+			&::before {
+				border-color: $accent-main;
+			}
+		}
+	}
+	input[type=checkbox]:checked ~ span::before {
+		background: $accent-main;
+		border-color: $accent-main;
+	}
+	input[type=checkbox]:checked ~ span::after {display: block}
+}
+
 .search-input {
 	position: relative;
 	&__search, &__close {
@@ -74,15 +118,15 @@ nav {
 		justify-content: center;
 		position: absolute;
 		top: 50%;
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 		transform: translateY(-50%);
 	}
 	&__search {
 		left: 16px;
 		svg {
-			width: 16px;
-			height: 16px;
+			width: 14px;
+			height: 14px;
 		}
 	}
 	&__close {
@@ -108,8 +152,7 @@ nav {
 	&__nav {
 		display: flex;
 		align-items: center;
-		margin-bottom: 48px;
-		// border-bottom: 1px solid $clre0;
+		margin-bottom: 32px;
 	}
 	&__nav-item {
 		padding: 10px 16px;
@@ -137,5 +180,73 @@ nav {
 		&.active {
 			display: block;
 		}
+	}
+}
+
+.was-validated {
+	.form-control {
+		&:invalid {
+			color: $red;
+			border-color: $red;
+			&::placeholder {color: $red}
+			& ~ .invalid-feedback {display: block;}
+			& ~ .checkbox__text::before {border-color: $red;}
+		}
+		&:valid {
+			background-image: none;
+		}
+	}
+}
+
+.invalid-feedback {
+	display: none;
+	position: absolute;
+	top: 5px;
+	right: 0;
+	color: $red;
+	font-size: 12px;
+	line-height: 125%;
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 24px;
+	label {
+		margin-bottom: 8px;
+		color: $txt-black90;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 150%;
+	}
+	input, textarea {
+		width: 100%;
+		height: 60px;
+		padding: 18px 24px;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		font-size: 16px;
+		&::placeholder {font-size: 16px;}
+	}
+	textarea {
+		height: 130px;
+	}
+	.policy {
+		color: $txt-black90;
+		font-size: 12px;
+		line-height: 135%;
+	}
+}
+
+.required {
+	display: inline;
+	color: $accent-main;
+}
+
+.hint {
+	display: flex;
+	align-items: center;
+	span {
+		margin-left: 2px;
+		line-height: 16px;
 	}
 }

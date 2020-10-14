@@ -15,38 +15,53 @@
 	cursor: pointer;
 	&:hover {
 		background: $accent-main2;
+		color: $white;
 	}
 	&:active {
 		background: $accent-main3;
+		color: $white;
 	}
 	&--gray {
 		background: $ui-mdm-gray;
-		&:hover {background: $ui-mdm-gray2;}
-		&:active {background: $ui-mdm-gray3;}
+		color: $txt-black;
+		&:hover {
+			background: $ui-mdm-gray2;
+			color: $txt-black;
+		}
+		&:active {
+			background: $ui-mdm-gray3;
+			color: $txt-black;
+		}
 	}
-	&--wdh185 {
-		max-width: 185px;
-	}
-	&--wdh190 {
-		max-width: 190px;
-	}
+	&--wdh185 {max-width: 185px;}
+	&--wdh190 {max-width: 190px;}
+	&--wdh220 {max-width: 220px;}
 	&--circle {
 		max-width: 40px;
 		height: 40px;
+		padding: 11px;
 		border-radius: 50%;
 	}
 	&--svg {
 		margin-left: 4px;
 	}
 	&--h40 {height: 40px}
-	&--h56 {height: 56px}
+	&--h52 {height: 52px}
 	&--white5 {
 		background: $ui-white5;
+		&:hover {background: $ui-white10}
 	}
 	&--trparent {
 		background: transparent;
 		&:hover {
-			background: $ui-white5;
+			background: $ui-white10;
 		}
+	}
+	&--br50 {border-radius: 50px;}
+}
+
+@media only screen and (max-width: 425px) {
+	.btn {
+		&--m-wdh100 {max-width: 100%;}
 	}
 }

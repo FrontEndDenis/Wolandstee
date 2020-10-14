@@ -11,5 +11,13 @@
 @import "footer/footer";
 // Модальные окна
 @import "modal/modal";
+// Главная
+@import "index/s-main-slider";
+// Слайдеры
+@import "sliders/main-slider";
+// Баннеры
+@import "slide-banner/slide-bannet";
+// Карточки
+@import "cards/basket-card/basket-card";
 // Ui-kit
 @import "../../../ui-kit/ui-breadcrumbs/ui-breadcrumbs.scss"
