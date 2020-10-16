@@ -1,3 +1,7 @@
+button[disabled] {
+	opacity: .5;
+}
+
 .btn {
 	display: flex;
 	align-items: center;
@@ -10,7 +14,7 @@
 	border-radius: 5px;
 	font-size: 14px;
 	line-height: 150%;
-	font-weight: 600;
+	font-weight: 500;
 	transition: .3s linear;
 	cursor: pointer;
 	&:hover {
@@ -58,9 +62,35 @@
 		}
 	}
 	&--br50 {border-radius: 50px;}
+	&--link {
+		display: inline-block;
+		width: auto;
+		height: auto;
+		padding: 0;
+		background: transparent;
+		color: $txt-gray;
+		&:hover {
+			background: transparent;
+			color: $accent-main2;
+		}
+		&:hover {
+			background: transparent;
+			color: $accent-main3;
+		}
+	}
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 1023px) {
+	.btn {
+		&--link {
+			height: 40px;
+			padding: 10px 0px;
+			text-align: center;
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
 	.btn {
 		&--m-wdh100 {max-width: 100%;}
 	}

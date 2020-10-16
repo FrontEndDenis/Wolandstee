@@ -1,10 +1,11 @@
 .basket-card {
 	position: relative;
 	display: flex;
-	padding: 18px 8px;
+	padding: 16px 8px;
 	background: $white;
 	color: $txt-black90;
 	font-weight: 600;
+	border-bottom: 1px solid rgba($color: $ui-dark-gray, $alpha: 0.1);
 	&__img {
 		max-width: 40px;
 		width: 100%;
@@ -14,12 +15,15 @@
 		overflow: hidden;
 	}
 	&__title {
+		display: inline-block;
 		margin-bottom: 16px;
 		padding-right: 70px;
 		color: $txt-black90;
 		font-size: 14px;
 		font-weight: 700;
 		line-height: 135%;
+		&:hover {color: $accent-main2;}
+		&:active {color: $accent-main3;}
 	}
 	&__info {
 		display: flex;
@@ -38,6 +42,10 @@
 		font-size: 12px;
 		line-height: 150%;
 	}
+	&__number {
+		margin-top: 17px;
+		.input-number {justify-content: flex-end;}
+	}
 	&__close {
 		position: absolute;
 		top: 18px;
@@ -45,5 +53,31 @@
 		color: $txt-gray60;
 		font-size: 12px;
 		line-height: 135%;
+		transition: .3s linear;
+		&:hover {color: $accent-main2;}
+		&:active {color: $accent-main3;}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.basket-card {
+		flex-direction: column;
+		padding: 24px 0px;
+		&__img {margin-bottom: 14px;}
+		&__title {padding-right: 0px;}
+		&__info {flex-wrap: wrap;}
+		&__item {
+			flex: 50%;
+			&:not(:last-child) {margin-right: 0px;}
+			&:nth-child(2n) {padding-left: 12px;}
+			&:nth-child(1n + 3) {margin-top: 12px;}
+		}
+		&__number {
+			.input-number {justify-content: flex-start;}
+		}
+		&__close {
+			top: 28px;
+			right: 20px;
+		}
 	}
 }

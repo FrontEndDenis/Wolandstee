@@ -18,8 +18,8 @@
 }
 
 .icon-search {
-	width: 24px;
-	height: 24px;
+	width: 20px;
+	height: 20px;
 	fill: $accent-main;
 }
 
@@ -46,7 +46,19 @@
 	height: 18px;
 }
 
-@media only screen and (max-width: 575px) {
+.icon-plus {
+	width: 8px;
+	height: 8px;
+	fill: $txt-black;
+}
+
+.icon-minus {
+	width: 8px;
+	height: 2px;
+	fill: $txt-black;
+}
+
+@media only screen and (max-width: 767px) {
 	.icon-search {
 		width: 16px;
 		height: 16px;

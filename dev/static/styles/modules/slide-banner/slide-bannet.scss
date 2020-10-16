@@ -32,7 +32,7 @@
 		max-width: 600px;
 	}
 	&--img-bg {
-		background: right url('../../../../static/images/general/slide-banner.jpg') no-repeat;
+		background: right url('../../../../static/images/content/slide-banner.jpg') no-repeat;
 		&::before {
 			content: '';
 			position: absolute;
@@ -47,15 +47,6 @@
 }
 
 @media only screen and (max-width: 767px) {
-	.slide-banner {
-		&__content {right: 60px;}
-		&__title {
-			br {display: none;}
-		}
-	}
-}
-
-@media only screen and (max-width: 575px) {
 	.slide-banner {
 		height: 320px;
 		border-radius: 0px;
