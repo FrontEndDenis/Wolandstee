@@ -1,7 +1,10 @@
 .top-line
 	.top-line__left
-		.top-line__logo
-			img(src='../../../static/images/general/logo.svg', alt='Велунд сталь')
+		.top-line__logo.logo
+			.logo__img
+				img(src='../../../static/images/general/logo-min.svg', alt='Велунд сталь')
+			.logo__text
+				img(src='../../../static/images/general/logo-text.svg', alt='Велунд сталь')
 		nav.top-line__nav
 			ul.top-line__navitagion-panel.txt--mdm14
 				li
@@ -47,11 +50,13 @@
 			button.top-line__callback.btn.btn--circle.btn--white5(type='button', data-toggle='modal' data-target='#modal-callback')
 				+icon('phone')
 		.top-line__mobile
-			button.top-line__m-search(type='button')
+			button.top-line__m-search.btn.btn--circle.btn--trparent(type='button')
 				+icon('search')
-			button.top-line__m-basket(type='button', data-toggle='modal', data-target='#modal-basket')
+				+icon('close')
+			button.top-line__m-basket.btn.btn--circle.btn--trparent(type='button', data-toggle='modal', data-target='#modal-basket')
 				+icon('basket')
-			button.top-line__m-menu(type='button')
+				+icon('close')
+			button.top-line__m-menu.btn.btn--circle.btn--trparent(type='button')
 				.hamburger
 					span
 				

@@ -58,13 +58,21 @@
 	fill: $txt-black;
 }
 
+.icon-clip {
+	width: 26px;
+	height: 28px;
+	fill: $accent-main;
+}
+
+.icon-document {
+	width: 22px;
+	height: 28px;
+	fill: $accent-main;
+}
+
 @media only screen and (max-width: 767px) {
-	.icon-search {
-		width: 16px;
-		height: 16px;
-	}
 	.icon-basket {
-		width: 17px;
-		height: 18px;
+		width: 19px;
+		height: 22px;
 	}
 }

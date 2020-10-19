@@ -1,7 +1,9 @@
 .header {
+	position: relative;
 	padding: 20px 0px;
 	background: $ui-main-blue;
 	color: $white;
+	z-index: 1000;
 	&__top-line {
 		margin-bottom: 16px;
 	}
@@ -21,6 +23,7 @@
 		margin-right: 24px;
 	}
 	&__navitagion-panel {
+		display: flex;
 		margin: 0px;
 		& > li {
 			line-height: 150%;
@@ -84,6 +87,12 @@
 		width: 40px;
 		height: 40px;
 		cursor: pointer;
+		.icon-close {
+			display: none;
+			width: 14px;
+			height: 14px;
+			fill: $accent-main;
+		}
 	}
 	&__m-basket {margin: 0px 12px}
 }
@@ -139,6 +148,8 @@
 	align-items: center;
 	justify-content: space-between;
 	&__navitagion-panel {
+		display: flex;
+		align-items: center;
 		margin: 0px;
 		& > li {
 			white-space: nowrap;
@@ -192,7 +203,10 @@
 		padding: 8px;
 		cursor: pointer;
 	}
-	&__basket {flex-shrink: 0;}
+	&__basket {
+		flex-shrink: 0;
+		a {min-width: 126px;}
+	}
 	&__catalog {
 		display: none;
 		position: absolute;
@@ -230,7 +244,6 @@
 	.top-line {
 		&__left {margin-right: 64px;}
 		&__logo {
-			max-width: 188px;
 			margin: 0px;
 		}
 		&__nav {display: none}
@@ -271,20 +284,17 @@
 
 @media only screen and (max-width: 767px) {
 	.header {
-		padding: 12px 0;
-		&__top-line {margin-bottom: 12px;}
+		padding: 10px 0 12px;
+		&__top-line {margin-bottom: 6px;}
 	}
 	.top-line {
-		&__logo {max-width: 140px;}
 		&__m-search, &__m-basket, &__m-menu {
-			width: 32px;
-			height: 32px;
+			padding: 0px;
 		}
 		&__m-basket {margin: 0px 8px}
 	}
 	.bottom-line {
 		&__navitagion-panel {
-			font-size: 12px;
 			& > li {
 				line-height: 135%;
 				&:not(:last-child) {margin-right: 16px}

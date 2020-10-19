@@ -6,6 +6,7 @@
 	color: $txt-black90;
 	font-weight: 600;
 	border-bottom: 1px solid rgba($color: $ui-dark-gray, $alpha: 0.1);
+	z-index: 10;
 	&__img {
 		max-width: 40px;
 		width: 100%;

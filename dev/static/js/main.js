@@ -348,10 +348,10 @@ prevBasket.addEventListener('click', () => {
 
 
 // Custom select
-function select()  {
+function select() {
 	let selectHeader = document.querySelectorAll('.select__header'),
 		selectItem = document.querySelectorAll('.select__item');
-	
+
 	selectHeader.forEach(item => {
 		item.addEventListener('click', selectToggle)
 	});
@@ -372,3 +372,49 @@ function select()  {
 };
 
 select();
+
+function inputFile() {
+	const inputFile = document.querySelectorAll('.input-file');
+
+	const processing = elem => {
+		const input = elem.querySelector('input'),
+			file = input.files[0],
+			txt = elem.querySelector('.input-file__txt'),
+			sizeTxt = elem.querySelector('.input-file__size'),
+			resetBtn = elem.querySelector('.input-file__reset'),
+			parts = file.name;
+
+		const reset = e => {
+			e.preventDefault();
+			e.stopPropagation();
+			if(input.value) {
+				txt.innerText = 'Добавить файл';
+				sizeTxt.innerText = 'до 10Mb';
+				elem.classList.remove('error', 'add-file')
+				input.value = '';
+			}
+		}
+
+		let fileSize = parseFloat((file.size / 1024 ** 2).toFixed(4));
+
+		if(fileSize > 10) {
+			elem.classList.add('error', 'add-file');
+			txt.innerText = parts;
+			sizeTxt.innerText = 'Файл слишком большой';
+			return
+		} else {
+			elem.classList.remove('error');
+			elem.classList.add('add-file')
+		}
+
+		resetBtn.addEventListener('click', reset);
+
+		sizeTxt.innerText = fileSize + 'Mb';
+		txt.innerText = parts;
+	}
+
+	inputFile.forEach(item => {
+		item.addEventListener('change', () => processing(item));
+	});
+}
+inputFile()

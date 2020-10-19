@@ -1,0 +1,76 @@
+.mobile-menu {
+	position: fixed;
+	// right: -100%;
+	top: 150px;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	transition: .3s linear;
+	z-index: 1001;
+	&__content {
+		position: relative;
+		max-width: 390px;
+		height: 100%;
+		margin-right: 0px;
+		margin-left: auto;
+		padding: 20px 32px 24px;
+		background: $white;
+		overflow-y: auto;
+		z-index: 1002;
+	}
+	&__city {
+		width: 100%;
+		padding-bottom: 20px;
+		border-bottom: 1px solid $ui-mdm-gray;
+		text-align: left;
+	}
+	&__city-title {
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 150%;
+	}
+	&__change {
+		color: $txt-gray;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 150%;
+	}
+	&__list {
+		padding: 20px 0px !important;
+		border-bottom: 1px solid $ui-mdm-gray;
+	}
+	&__item {
+		&:not(:last-child) {margin-bottom: 8px;}
+		& > a {
+			display: flex;
+			padding: 6px 0px;
+			font-size: 18px;
+			font-weight: 700;
+			line-height: 120%;
+			cursor: pointer;
+		}
+	}
+	&__icon {
+		margin-left: 8px;
+		line-height: 100%;
+		svg {
+			width: 13px;
+			height: 8px;
+		}
+		.icon-star {
+			width: 15px;
+			height: 15px;
+		}
+	}
+	&__contacts {
+		padding-top: 20px;
+	}
+	&__phone {
+		a {display: inline-block;}
+		.txt--mdm14 {color: $txt-gray;}
+	}
+	&__mail {
+		display: inline-block;
+		margin: 18px 0 32px;
+	}
+}

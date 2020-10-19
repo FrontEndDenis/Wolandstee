@@ -19,19 +19,34 @@ ul:not([class]) {
 	}
 }
 
-nav {
-	font-size: 14px;
-	font-weight: 500;
-	 & > ul {
-		display: flex;
-		align-items: center;
+// nav {
+// /* 	font-size: 14px;
+// 	font-weight: 500; */
+// 	 & > ul {
+// 		display: flex;
+// 		align-items: center;
+// 	}
+// }
+
+.logo {
+	display: flex;
+	align-items: center;
+	&__img {
+		max-width: 47px;
+		margin-right: 10px;
+	}
+	&__text {
+		max-width: 136px;
+		margin-top: 4px;
 	}
 }
 
 .hamburger {
 	position: relative;
-	width: 18px;
-	height: 14px;
+	width: 21px;
+	height: 16px;
+	// width: 18px;
+	// height: 14px;
 	transform: rotate(0deg);
 	transition: .3s linear;
 	cursor: pointer;
@@ -47,9 +62,11 @@ nav {
 		transition: .3s ease-in-out;
 	}
 	&::after, &::before {content: ''}
-	span {top: 6px}
-	&::before {top: 0px}
-	&::after {top: 12px}
+	span {top: 7px}
+	&::after {top: 14px}
+	// span {top: 6px}
+	// &::before {top: 0px}
+	// &::after {top: 12px}
 	&.open {
 		&::before {
 			top: 6px;
@@ -274,6 +291,15 @@ nav {
 		height: 18px;
 		background: $ui-mdm-gray;
 		border-radius: 50%;
+		transition: .3s linear;
+		&:hover {
+			background: $accent-main2;
+			svg {fill: $white;}
+		}
+		&:active {
+			background: $accent-main3;
+			svg {fill: $white;}
+		}
 	}
 }
 
@@ -338,5 +364,87 @@ nav {
 	&.active {
 		.select__body {display: block;}
 		.select__icon {transform: rotate(180deg);}
+	}
+}
+
+.input-file {
+	display: inline-block;
+	input {
+		display: none;
+	}
+	label {
+		display: flex;
+		margin: 0px;
+		cursor: pointer;
+		&:hover {
+			.input-file__txt {
+				color: $accent-main2;
+			}
+			
+		}
+	}
+	&__wrap {
+		display: flex;
+	}
+	&__icon {
+		margin-right: 16px;
+		.icon-document {display: none;}
+	}
+	&__txt {
+		max-width: 156px;
+		margin-bottom: 2px;
+		color: $txt-black;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 150%;
+		transition: .3s linear;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	&__size {
+		color: $txt-gray;
+		font-size: 12px;
+		line-height: 135%;
+		font-weight: 500;
+		transition: .3s linear;
+	}
+	&__reset {
+		position: relative;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 17px;
+		height: 17px;
+		margin-left: 6px;
+		z-index: 5;
+		cursor: pointer;
+		&:hover, &:active {
+			svg {fill: $txt-gray;}
+		}
+		svg {
+			width: 10px;
+			height: 10px;
+			fill: $ui-dark-gray30;
+		}
+	}
+	&.add-file {
+		.input-file__reset {display: flex;}
+	}
+	&.error {
+		.input-file {
+			&__icon svg{fill: $red;}
+			&__size {color: $red;}
+		}	
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.logo {
+		&__img {
+			max-width: 32px;
+			margin-right: 7px;
+		}
+		&__text {max-width: 113px;}
 	}
 }
