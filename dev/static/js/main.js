@@ -1,3 +1,19 @@
+const modalList = {
+	basket: new bootstrap.Modal(document.getElementById('modal-basket'))
+	// search: new bootstrap.Modal(document.querySelector('#modal-search')),
+}
+
+function closeBsModal() {
+	for (let item in modalList) {
+		modalList[item].hide();
+	}
+}
+
+function showBsModal(elem) {
+	let myModal = new bootstrap.Modal(document.querySelector(elem));
+	myModal.show()
+}
+
 svg4everybody();
 
 function slidersInit() {
@@ -455,6 +471,30 @@ function accordion() {
 }
 accordion();
 
+// Кнопка открытия корзины
+function openBasketBtn() {
+	if (document.documentElement.clientWidth > 767) return
+	const btn = document.querySelector('#open-basket');
+
+	const open = () => {
+		showBsModal('#modal-basket')
+		btn.classList.add('open-basket');
+		animateCSS(btn.querySelector('.icon-close'), 'fade-in')
+	}
+
+	const close = () => {
+		btn.classList.remove('open-basket');
+		animateCSS(btn.querySelector('.icon-basket'), 'fade-in')
+	}
+
+	btn.addEventListener('click', () => {
+		(btn.classList.contains('open-basket')) ? [close(), closeBsModal('#modal-basket')] : open();
+	})
+	eventBsModal('#modal-basket', 'hide', close)
+}
+openBasketBtn()
+
+// Открытие меню
 function mobileMenu() {
 	const menu = document.querySelector('.mobile-menu'),
 		over = menu.querySelector('.mobile-menu__overlay'),
@@ -485,16 +525,16 @@ function mobileMenu() {
 
 mobileMenu()
 
+// Открытие каталога в мобильном меню
 function catalogMobMenu() {
-	const items = document.querySelectorAll('.catalog-m-menu__item a');
+	const items = document.querySelectorAll('.catalog-m-menu__item a'),
+		prev = document.querySelectorAll('.catalog-m-menu__prev');
 
 	const show = item => {
 		let block = item.nextElementSibling;
 		if (!block) return
 		block.style.transform = 'translate(0)';
 	}
-
-	const prev = document.querySelectorAll('.catalog-m-menu__prev');
 
 	const fade = item => {
 		let block = item.closest('.catalog-m-menu__sub')
@@ -510,50 +550,3 @@ function catalogMobMenu() {
 	})
 }
 catalogMobMenu();
-
-
-
-
-
-
-
-
-
-
-
-
-// Кнопка открытия корзины
-function openBasketBtn() {
-	if (document.documentElement.clientWidth > 767) return
-	const btn = document.querySelector('#open-basket');
-
-	const open = () => {
-		showBsModal('#modal-basket')
-		btn.classList.add('open-basket');
-		animateCSS(btn.querySelector('.icon-close'), 'fade-in')
-	}
-
-	const close = () => {
-		btn.classList.remove('open-basket');
-		animateCSS(btn.querySelector('.icon-basket'), 'fade-in')
-	}
-
-	btn.addEventListener('click', () => {
-		(btn.classList.contains('open-basket')) ? [close(), closeBsModal('#modal-basket')] : open();
-	})
-	eventBsModal('#modal-basket', 'hide', close)
-}
-openBasketBtn()
-
-function showBsModal(elem) {
-	
-	let myModal = new bootstrap.Modal(document.querySelector(elem));
-
-	myModal.show()
-}
-
-// 
-function closeBsModal(elem) {
-	let myModal = new bootstrap.Modal(document.querySelector(elem));
-	myModal.hide()
-}
