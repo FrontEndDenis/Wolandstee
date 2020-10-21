@@ -94,7 +94,31 @@
 			fill: $accent-main;
 		}
 	}
-	&__m-basket {margin: 0px 12px}
+	&__m-menu {
+		&.active {
+			.hamburger {
+				&::before {
+					top: 6px;
+					transform: rotate(135deg);
+				}
+				span {
+					opacity: 0;
+					left: -10px;
+				}
+				&::after {
+					top: 6px;
+					transform: rotate(-135deg);
+				}
+			}
+		}
+	}
+	&__m-basket {
+		margin: 0px 12px;
+		&.open-basket {
+			.icon-basket {display: none;}
+			.icon-close {display: block;}
+		}
+	}
 }
 
 .catalog-list {

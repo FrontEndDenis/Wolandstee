@@ -1,6 +1,6 @@
 svg4everybody();
 
-function sliderInit() {
+function slidersInit() {
 	let text = ['Бесплатная доставка', 'Скидка на 1-ый заказ', 'Акции месяца', 'Новый Год', 'Текст из массива js']
 	const mainSlider = new Swiper('.main-slider', {
 		slidesPerView: 1,
@@ -19,7 +19,13 @@ function sliderInit() {
 		}
 	})
 }
-sliderInit();
+slidersInit();
+
+document.addEventListener("DOMContentLoaded", function () {
+	window.onresize = () => {
+		// openBasketBtn()
+	};
+});
 
 function isMobile() {
 	let isMobile = {
@@ -40,12 +46,6 @@ function isMobile() {
 }
 
 // Анимации
-// function animation(item, addClass) {
-// 	item.classList.add(addClass);
-// 	item.addEventListener('animationend', () => {
-// 		item.classList.remove(addClass);
-// 	}, { once: true });
-// }
 function animateCSS(element, animation) {
 	return new Promise((resolve, reject) => {
 		const animationName = animation;
@@ -77,6 +77,15 @@ function animateCSS(element, animation) {
 		});
 	}, false);
 })();
+
+// Отслеживаем событие Bootstrap modal window
+function eventBsModal(elem, events, fn) {
+	document.querySelector(elem).addEventListener(`${events}.bs.modal`, function (e) {
+		fn()
+	});
+}
+
+
 
 // Поиск в шапке
 function openSearchHeader() {
@@ -241,8 +250,8 @@ function inputNumber() {
 inputNumber();
 
 
-// Корзина
 
+// Корзина
 class Basket {
 	constructor(className) {
 		this.element = document.querySelector(className);
@@ -253,14 +262,15 @@ class Basket {
 
 		this.hideAll(classElem);
 
-		sections[n].classList.add('show-section', 'animate__animated', 'fade-in');
+		sections[n].classList.add('show-section', 'animation', 'fade-in');
 	}
 
 	hideAll(classElem) {
 		const sections = this.element.querySelectorAll(classElem);
 
 		sections.forEach((section) => {
-			section.classList.remove('show-section', 'animate__animated', 'fade-out');
+			section.classList.remove('show-section', 'animation');
+			animateCSS(section, 'fade-in')
 		});
 	}
 }
@@ -302,6 +312,7 @@ function basketApp() {
 	basket.show(0, '.modal-basket__basket-item')
 	document.dispatchEvent(new Event('changeBasket'));
 }
+
 basketApp();
 
 clearList.addEventListener('click', () => {
@@ -387,7 +398,7 @@ function inputFile() {
 		const reset = e => {
 			e.preventDefault();
 			e.stopPropagation();
-			if(input.value) {
+			if (input.value) {
 				txt.innerText = 'Добавить файл';
 				sizeTxt.innerText = 'до 10Mb';
 				elem.classList.remove('error', 'add-file')
@@ -397,7 +408,7 @@ function inputFile() {
 
 		let fileSize = parseFloat((file.size / 1024 ** 2).toFixed(4));
 
-		if(fileSize > 10) {
+		if (fileSize > 10) {
 			elem.classList.add('error', 'add-file');
 			txt.innerText = parts;
 			sizeTxt.innerText = 'Файл слишком большой';
@@ -418,3 +429,131 @@ function inputFile() {
 	});
 }
 inputFile()
+
+// Аккардион
+function accordion() {
+	const acc = document.querySelectorAll('.accordion');
+	acc.forEach(item => {
+		let panel = item.nextElementSibling;
+		panel.style.maxHeight = 0
+		item.addEventListener('click', (evt) => {
+			evt.preventDefault();
+			item.classList.toggle('active');
+			if (!panel.style.maxHeight) {
+				panel.style.maxHeight = panel.scrollHeight + 'px';
+				setTimeout(() => {
+					panel.style.maxHeight = 0;
+				}, 20);
+			} else {
+				panel.style.maxHeight = panel.scrollHeight + 'px';
+				panel.addEventListener('transitionend', () => {
+					panel.style.maxHeight = null;
+				}, { once: true });
+			}
+		});
+	})
+}
+accordion();
+
+function mobileMenu() {
+	const menu = document.querySelector('.mobile-menu'),
+		over = menu.querySelector('.mobile-menu__overlay'),
+		menuBtn = document.querySelector('#mobile-menu');
+
+	const showMenu = () => {
+		document.querySelector('body').classList.add('modal-open');
+		menuBtn.classList.toggle('active');
+		menu.style.right = '0';
+		over.classList.add('active');
+		animateCSS(over, 'fade-in');
+	}
+
+	const closeMenu = () => {
+		document.querySelector('body').classList.remove('modal-open');
+		menu.style.right = '-100%';
+		menuBtn.classList.remove('active');
+		over.classList.remove('active');
+	}
+
+	menuBtn.addEventListener('click', () => {
+		(menuBtn.classList.contains('active')) ? closeMenu() : showMenu();
+	});
+	over.addEventListener('click', () => {
+		closeMenu();
+	})
+}
+
+mobileMenu()
+
+function catalogMobMenu() {
+	const items = document.querySelectorAll('.catalog-m-menu__item a');
+
+	const show = item => {
+		let block = item.nextElementSibling;
+		if (!block) return
+		block.style.transform = 'translate(0)';
+	}
+
+	const prev = document.querySelectorAll('.catalog-m-menu__prev');
+
+	const fade = item => {
+		let block = item.closest('.catalog-m-menu__sub')
+		block.style.transform = 'translate(100%)';
+	}
+
+	items.forEach(item => {
+		item.addEventListener('click', () => show(item))
+	});
+
+	prev.forEach(item => {
+		item.addEventListener('click', () => fade(item))
+	})
+}
+catalogMobMenu();
+
+
+
+
+
+
+
+
+
+
+
+
+// Кнопка открытия корзины
+function openBasketBtn() {
+	if (document.documentElement.clientWidth > 767) return
+	const btn = document.querySelector('#open-basket');
+
+	const open = () => {
+		showBsModal('#modal-basket')
+		btn.classList.add('open-basket');
+		animateCSS(btn.querySelector('.icon-close'), 'fade-in')
+	}
+
+	const close = () => {
+		btn.classList.remove('open-basket');
+		animateCSS(btn.querySelector('.icon-basket'), 'fade-in')
+	}
+
+	btn.addEventListener('click', () => {
+		(btn.classList.contains('open-basket')) ? [close(), closeBsModal('#modal-basket')] : open();
+	})
+	eventBsModal('#modal-basket', 'hide', close)
+}
+openBasketBtn()
+
+function showBsModal(elem) {
+	
+	let myModal = new bootstrap.Modal(document.querySelector(elem));
+
+	myModal.show()
+}
+
+// 
+function closeBsModal(elem) {
+	let myModal = new bootstrap.Modal(document.querySelector(elem));
+	myModal.hide()
+}
