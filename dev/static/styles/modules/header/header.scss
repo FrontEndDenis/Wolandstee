@@ -3,7 +3,7 @@
 	padding: 20px 0px;
 	background: $ui-main-blue;
 	color: $white;
-	z-index: 1000;
+	z-index: 100;
 	&__top-line {
 		margin-bottom: 16px;
 	}
@@ -112,9 +112,15 @@
 			}
 		}
 	}
+	&__m-search {
+		&.open{
+			.icon-search {display: none;}
+			.icon-close {display: block;}
+		}
+	}
 	&__m-basket {
 		margin: 0px 12px;
-		&.open-basket {
+		&.open{
 			.icon-basket {display: none;}
 			.icon-close {display: block;}
 		}
@@ -128,7 +134,6 @@
 		position: absolute;
 		top: 21px;
 		padding-top: 6px;
-		z-index: 2;
 		transition: .3s linear;
 		z-index: 1000;
 	}
@@ -208,9 +213,10 @@
 	}
 	&__right {
 		position: relative;
+		flex: 1;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-end;
 	}
 	&__search-input {
 		display: none;
@@ -229,7 +235,7 @@
 	}
 	&__basket {
 		flex-shrink: 0;
-		a {min-width: 126px;}
+		button {min-width: 126px;}
 	}
 	&__catalog {
 		display: none;
@@ -238,7 +244,7 @@
 		left: 0px;
 		right: 0px;
 		padding-top: 8px;
-		z-index: 10;
+		// z-index: 10;
 		&.active {display: block}
 	}
 	&.open-search {
@@ -255,7 +261,7 @@
 			&__right {flex: 1}
 			&__search-input {flex: 1}
 			&__search {display: none}
-			&__basket {margin-left: 12px;}
+			&__basket {margin-left: 16px;}
 		}
 	}
 }

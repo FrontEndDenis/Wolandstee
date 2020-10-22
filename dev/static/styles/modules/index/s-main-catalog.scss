@@ -1,0 +1,26 @@
+.s-main-catalog {
+	&__header {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin-bottom: 48px;
+	}
+}
+
+@media only screen and (max-width: 1199px) {
+	.s-main-catalog {
+		&__header {
+			margin-bottom: 40px;
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.s-main-catalog {
+		&__header {
+			align-items: center;
+			margin-bottom: 24px;
+			.txt--bld40 {font-size: 24px;}
+		}
+	}
+}

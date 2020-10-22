@@ -129,7 +129,7 @@ ul:not([class]) {
 
 .search-input {
 	position: relative;
-	&__search, &__close {
+	&__search, &__close, &__reset {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -138,6 +138,7 @@ ul:not([class]) {
 		width: 16px;
 		height: 16px;
 		transform: translateY(-50%);
+		cursor: pointer;
 	}
 	&__search {
 		left: 16px;
@@ -146,8 +147,20 @@ ul:not([class]) {
 			height: 14px;
 		}
 	}
-	&__close {
+	&__close, &__reset {
 		right: 16px;
+	}
+	&__reset {
+		display: none;
+		&:hover, &:active {
+			svg {fill: $txt-gray;}
+		}
+		svg {
+			width: 12px;
+			height: 12px;
+			fill: $ui-dark-gray30;
+		}
+		&.reset {display: flex;}
 	}
 	input {
 		width: 100%;
@@ -448,6 +461,25 @@ ul:not([class]) {
 	overflow: hidden;
 }
 
+.link {
+	display: flex;
+	align-items: center;
+	color: $txt-gray;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 150%;
+	transition: .3s linear;
+	cursor: pointer;
+	svg {
+		display: none;
+		width: 10px;
+		height: 14px;
+	}
+	&--w {color: $txt-white60;}
+	&:hover {color: $accent-main2;}
+	&:active {color: $accent-main3;}
+}
+
 @media only screen and (max-width: 767px) {
 	.logo {
 		&__img {
@@ -455,5 +487,12 @@ ul:not([class]) {
 			margin-right: 7px;
 		}
 		&__text {max-width: 113px;}
+	}
+	.link {
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		span {display: none;}
+		svg {display: block;}
 	}
 }

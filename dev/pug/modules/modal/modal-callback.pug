@@ -2,8 +2,10 @@
 	.modal-dialog
 		.modal-content
 			.modal-w
-				.modal-w__close.modal-close(type='button' data-dismiss='modal')
+				.modal-w__close.modal-close.modal-close--txt(type='button' data-dismiss='modal')
 					+icon('close')
+					+icon('arrow-right-2')
+					.modal-close__text Обратный звонок
 				.modal-w__title.txt--bld36 Нужен обратный звонок?
 				.modal-w__text Оставьте свои контактные данные и мы перезвоним вам в течение 15 минут
 				form.modal-w__form.needs-validation(action='', method='get', novalidate)
@@ -28,4 +30,3 @@
 					a.write-us__mail(href='mailto:name@velund.ru')
 						+icon('arrow-right')
 						| name@velund.ru
-

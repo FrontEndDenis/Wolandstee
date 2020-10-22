@@ -15,11 +15,14 @@
 @import "mobile-menu/mobile-menu";
 // Главная
 @import "index/s-main-slider";
+@import "index/s-main-catalog";
 // Слайдеры
 @import "sliders/main-slider";
+@import "sliders/catalog-slider";
 // Баннеры
 @import "slide-banner/slide-bannet";
 // Карточки
 @import "cards/basket-card/basket-card";
+@import "cards/catalog-card/catalog-card";
 // Ui-kit
 @import "../../../ui-kit/ui-breadcrumbs/ui-breadcrumbs.scss"

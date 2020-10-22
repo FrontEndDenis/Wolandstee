@@ -1,36 +1,42 @@
 const modalList = {
-	basket: new bootstrap.Modal(document.getElementById('modal-basket'))
-	// search: new bootstrap.Modal(document.querySelector('#modal-search')),
-}
-
-function closeBsModal() {
-	for (let item in modalList) {
-		modalList[item].hide();
-	}
-}
-
-function showBsModal(elem) {
-	let myModal = new bootstrap.Modal(document.querySelector(elem));
-	myModal.show()
+	basket: new bootstrap.Modal(document.getElementById('modal-basket')),
+	search: new bootstrap.Modal(document.getElementById('modal-search')),
 }
 
 svg4everybody();
 
 function slidersInit() {
-	let text = ['Бесплатная доставка', 'Скидка на 1-ый заказ', 'Акции месяца', 'Новый Год', 'Текст из массива js']
+	let mainText = ['Бесплатная доставка', 'Скидка на 1-ый заказ', 'Акции месяца', 'Новый Год', 'Текст из массива js'];
 	const mainSlider = new Swiper('.main-slider', {
 		slidesPerView: 1,
 		spaceBetween: 30,
 		loop: true,
-		// autoplay: {
-		// 	delay: 3500,
-		// 	disableOnInteraction: false,
-		// },
+		autoplay: {
+			delay: 3500,
+			disableOnInteraction: false,
+		},
 		pagination: {
 			el: '.s-main-slider__pagination',
 			clickable: true,
 			renderBullet: function (index, className) {
-				return `<span class="` + className + `">` + (text[index]) + `</span>`;
+				return `<span class="` + className + `">` + (mainText[index]) + `</span>`;
+			}
+		}
+	})
+	const catalogSlider = new Swiper('.catalog-slider', {
+		spaceBetween: 24,
+		breakpoints: {
+			0: {
+				slidesPerView: 1,
+			},
+			576: {
+				slidesPerView: 2,
+			},
+			768: {
+				slidesPerView: 3,
+			},
+			1024: {
+				slidesPerView: 4,
 			}
 		}
 	})
@@ -39,7 +45,7 @@ slidersInit();
 
 document.addEventListener("DOMContentLoaded", function () {
 	window.onresize = () => {
-		// openBasketBtn()
+		heightCatalogCard()
 	};
 });
 
@@ -101,8 +107,6 @@ function eventBsModal(elem, events, fn) {
 	});
 }
 
-
-
 // Поиск в шапке
 function openSearchHeader() {
 	const btn = document.querySelector('#open-search-header'),
@@ -112,7 +116,8 @@ function openSearchHeader() {
 
 	const show = () => {
 		bottomLine.classList.add('open-search');
-		btn.previousElementSibling.classList.add('active', 'animation', 'fade-in');
+		btn.previousElementSibling.classList.add('active');
+		animateCSS(btn.previousElementSibling, 'fade-in')
 	}
 
 	const hide = () => {
@@ -132,11 +137,12 @@ function catalogListInfo() {
 		block = elem.querySelector('.catalog-list__wrap');
 
 	const show = () => {
-		elem.classList.add('active', 'animation', 'fade-in');
+		elem.classList.add('active');
+		animateCSS(block, 'fade-in');
 	}
 
 	const hide = () => {
-		elem.classList.remove('active', 'animation', 'fade-out');
+		elem.classList.remove('active');
 	}
 	elem.addEventListener('mouseenter', show, false);
 	elem.addEventListener('mouseleave', hide, false);
@@ -265,7 +271,28 @@ function inputNumber() {
 }
 inputNumber();
 
+// Сброс текста в поиске
+function resetSearch() {
+	const parent = document.querySelectorAll('.search-input--reset');
+		
+	const addReset = elem => {
+		const input = elem.querySelector('input'),
+			btnReset = elem.querySelector('.search-input__reset');
 
+		(input.value != '') ? btnReset.classList.add('reset') : btnReset.classList.remove('reset')
+
+		btnReset.addEventListener('click', () => {
+			input.value = '';
+			input.focus();
+			btnReset.classList.remove('reset');
+		})
+	}
+
+	parent.forEach(item => {
+		item.addEventListener('input', () => addReset(item))
+	});
+}
+resetSearch()
 
 // Корзина
 class Basket {
@@ -285,8 +312,7 @@ class Basket {
 		const sections = this.element.querySelectorAll(classElem);
 
 		sections.forEach((section) => {
-			section.classList.remove('show-section', 'animation');
-			animateCSS(section, 'fade-in')
+			section.classList.remove('show-section');
 		});
 	}
 }
@@ -471,28 +497,28 @@ function accordion() {
 }
 accordion();
 
-// Кнопка открытия корзины
-function openBasketBtn() {
-	if (document.documentElement.clientWidth > 767) return
-	const btn = document.querySelector('#open-basket');
+// Кнопка открытия мобильных кнопок поиска и корзины
+function openBasketBtn(btnClass, icon, modalListElem, modalClass) {
+	const btn = document.querySelector(btnClass);
 
 	const open = () => {
-		showBsModal('#modal-basket')
-		btn.classList.add('open-basket');
+		btn.classList.add('open');
 		animateCSS(btn.querySelector('.icon-close'), 'fade-in')
 	}
 
 	const close = () => {
-		btn.classList.remove('open-basket');
-		animateCSS(btn.querySelector('.icon-basket'), 'fade-in')
+		btn.classList.remove('open');
+		animateCSS(btn.querySelector(icon), 'fade-in')
 	}
 
 	btn.addEventListener('click', () => {
-		(btn.classList.contains('open-basket')) ? [close(), closeBsModal('#modal-basket')] : open();
+		(btn.classList.contains('open')) ? close() : open();
+		modalListElem.toggle();
 	})
-	eventBsModal('#modal-basket', 'hide', close)
+	eventBsModal(modalClass, 'hide', close)
 }
-openBasketBtn()
+openBasketBtn('#open-basket', '.icon-basket', modalList.basket, '#modal-basket')
+openBasketBtn('#open-search', '.icon-search', modalList.search, '#modal-search')
 
 // Открытие меню
 function mobileMenu() {
@@ -550,3 +576,24 @@ function catalogMobMenu() {
 	})
 }
 catalogMobMenu();
+
+// Высота скролла карточек Каталога
+function heightCatalogCard() {
+	const cards = document.querySelectorAll('.catalog-card');
+
+	const calcHeight = elem => {
+		const hiddenCard = elem.querySelector('.catalog-card__hidden'),
+			scrollList = elem.querySelector('.catalog-card__list'),
+			titleCard = elem.querySelector('.catalog-card__h-title');
+		
+		let heightCalc = 0;
+
+		heightCalc = hiddenCard.offsetHeight - ((titleCard.offsetHeight + 20) + 48);
+		scrollList.style.maxHeight = heightCalc + 'px';
+	}
+
+	cards.forEach(item => {
+		calcHeight(item)
+	})
+}
+heightCatalogCard()
